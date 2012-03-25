@@ -35,6 +35,5 @@ exports.index = (req, res) ->
 exports.algorithms = (req, res) ->
     page =
         'title': 'Algorithms',
-        'description': 'Hola',
-        'pwd': pwd
+        'description': 'Hola'
     res.render 'algorithms.html', page

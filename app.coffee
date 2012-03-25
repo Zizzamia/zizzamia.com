@@ -22,5 +22,5 @@ app.configure 'production', () ->
 app.get('/', routes.index)
 app.get('/algorithms', routes.algorithms)
 
-app.listen(3000)
+app.listen(22026)
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

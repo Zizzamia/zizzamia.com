@@ -1,0 +1,60 @@
+<section class="row">
+    <nav class="left span3">
+        <div>
+            <h2>Projects</h2>
+            <ul>
+                <li>
+                    <a href="http://www.tiramisujs.com/" title="">
+                        <img src="img/tiramisu.png" alt="" />
+                        Tiramisu.js
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/OwlStudios/bombolone" title="A tasty Content Management System 
+                    for Python based on Flask, MongoDB, Tiramisu">
+                        <img src="img/bombolone.png" alt="" />
+                        Bombolone
+                    </a>
+                </li>
+                <li>
+                    <a href="algorithms/" title="">Algorithms.js</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h2>Contacts</h2>
+            <ul>
+                <li><a href="https://github.com/Zizzamia" title="">Github</a></li>
+                <li><a href="https://twitter.com/#!/zizzamia" title="">Twitter</a></li>
+                <li><a href="uk.linkedin.com/pub/leonardo-zizzamia/22/8a9/97" title="">Linkedin</a></li>
+                <li><a href="https://www.facebook.com/lzizzamia" title="">Facebook</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="right span8">
+        <header>
+            <section class="row">
+                <div class="left span2">
+                    <img src="<%=profile_image%>" alt="">
+                </div>
+                <div class="right span6">
+                    <h1>Leonardo Zizzamia</h1>
+                    <p>Web developer working at <a href="http://www.framestore.com" title="Framestore is the largest 
+                        visual effects and computer animation studio in Europe, with over 20 years of experience 
+                        in digital film and video technology.">FrameStore</a>, London UK.</p>
+                    <p>Creator of <a href="http://www.tiramisujs.com/" title="A tasty JavaScript µLibrary">Tiramisu</a> 
+                        and <a href="https://github.com/OwlStudios/bombolone" title="A tasty Content Management System 
+                        for Python based on Flask, MongoDB, Tiramisu">Bombolone</a>
+                    </p>
+                </div>
+            </section>
+        </header>
+        <div class="timeline">
+            <ul>
+            <% for(var i=0; i< tweets.length; i++) {%>
+               <li><%= tweets[i]['text'] %></li>
+            <% } %>
+            </ul>
+        </div>
+    </div>
+</section>

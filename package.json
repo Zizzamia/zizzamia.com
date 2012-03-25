@@ -1,0 +1,12 @@
+{
+    "name": "zizzamia.com",
+    "version": "0.0.1",
+    "dependencies": {
+      "coffee-script": "*",
+      "cookies": "*",
+      "express": "2.5.8",
+      "ejs":  "0.6.1",
+      "keygrip": "*",
+      "oauth": "*"
+  }
+}

@@ -22,8 +22,15 @@ user_timeline =
     include_rts:true,
     screen_name:'zizzamia', 
     count:20
+    
+log = (req) ->
+    head = req.headers
+    route = req.route
+    text = route.path + ' - ' + route.method + ' - ' + head.host + ' - ' + head['user-agent'].split(' ')[0]
+    console.log(text)
 
 exports.index = (req, res) ->
+    log(req)
     twit.get '/statuses/user_timeline.json', user_timeline, (data) ->
         page =
             'title': 'Leonardo Zizzamia',
@@ -33,6 +40,7 @@ exports.index = (req, res) ->
         res.render 'index.html', page
     
 exports.algorithms = (req, res) ->
+    log(req)
     page =
         'title': 'Algorithms',
         'description': 'Hola'

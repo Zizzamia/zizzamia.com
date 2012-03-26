@@ -1,4 +1,5 @@
 twitter = require '../lib/twitter'
+dateformat = require '../lib/dateformat'
 
 # Instantiates new Twitter object
 twit = new twitter({
@@ -24,9 +25,11 @@ user_timeline =
     count:20
     
 log = (req) ->
+    now = new Date()
+    utc = dateformat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
     head = req.headers
     route = req.route
-    text = route.path + ' - ' + route.method + ' - ' + head.host + ' - ' + head['user-agent'].split(' ')[0]
+    text = route.path + ' - ' + route.method + ' - ' + head.host + ' - ' + head['user-agent'].split(' ')[0] + ' - ' + utc
     console.log(text)
 
 exports.index = (req, res) ->

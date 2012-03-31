@@ -2,8 +2,8 @@
 <html lang='en'>
 <head>
     <meta charset="utf-8">
-    <title><%= title %></title>
-    <meta name="description" content="<%= description %>">
+    <title>{{  title }}</title>
+    <meta name="description" content="{{ description }}">
     
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/css/style.css?123">
@@ -16,7 +16,8 @@
     <div class="magic_piano">
     </div>
     <div class="container">
-        <%- body %>
+        {% block container %}
+        {% endblock %}
     </div>
     <footer>
         

@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block container %}
 <section class="row">
     <nav class="left span3">
         <div>
@@ -39,7 +41,7 @@
         <header>
             <section class="row">
                 <div class="left span2">
-                    <img src="<%=profile_image%>" alt="">
+                    <img src="{{ profile_image }}" alt="">
                 </div>
                 <div class="right span6">
                     <h1>Leonardo Zizzamia</h1>
@@ -53,12 +55,8 @@
                 </div>
             </section>
         </header>
-        <div class="timeline">
-            <ul>
-            <% for(var i=0; i< tweets.length; i++) {%>
-               <li><%= tweets[i]['text'] %></li>
-            <% } %>
-            </ul>
+        <div class="twitter">
         </div>
     </div>
 </section>
+{% endblock %}

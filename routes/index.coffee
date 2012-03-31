@@ -34,14 +34,21 @@ log = (req) ->
 
 exports.index = (req, res) ->
     log(req)
+    page =
+        'title': 'Leonardo Zizzamia',
+        'description': 'Hola',
+        'profile_image': profile_image['image'],
+    res.render 'index.html', page
+
+
+exports.timeline = (req, res) ->
     twit.get '/statuses/user_timeline.json', user_timeline, (data) ->
-        page =
-            'title': 'Leonardo Zizzamia',
-            'description': 'Hola',
-            'profile_image': profile_image['image'],
-            'tweets': data
-        res.render 'index.html', page
-    
+        page = 
+            'layout' : false,
+            'tweets' : data
+        res.render 'timeline.html', page
+
+
 exports.algorithms = (req, res) ->
     log(req)
     page =

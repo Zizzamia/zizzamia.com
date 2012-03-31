@@ -55,7 +55,7 @@
                 </div>
             </section>
         </header>
-        <div class="twitter">
+        <div id="twitter">
         </div>
     </div>
 </section>
@@ -64,7 +64,11 @@
 {% block js_code %}
 <script>
 t.get(document).ready(function(){
-    console.log('ciao')
+    t.ajax({
+        url : '/timeline',
+        loader : '<img src="/img/loader.gif" alt="" />',
+        successHTML : 'twitter'
+    });
 })
 </script>
 {% endblock %}

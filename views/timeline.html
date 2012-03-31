@@ -1,7 +1,7 @@
 <div class="timeline">
     <ul>
-    <% for(var i=0; i< tweets.length; i++) {%>
-       <li>{{ tweets[i]['text'] }}</li>
-    <% } %>
+    {% for tweet in tweets %}
+       <li>{{ tweet.text }}</li>
+    {% endfor %}
     </ul>
 </div>

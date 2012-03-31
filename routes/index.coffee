@@ -36,7 +36,7 @@ exports.index = (req, res) ->
     log(req)
     page =
         'title': 'Leonardo Zizzamia',
-        'description': 'Hola',
+        'description': 'Web developer working at FrameStore, London UK. Creator of Tiramisu.js and Bombolone',
         'profile_image': profile_image['image'],
     res.render 'index.html', page
 

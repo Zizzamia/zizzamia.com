@@ -44,7 +44,6 @@ exports.index = (req, res) ->
 exports.timeline = (req, res) ->
     twit.get '/statuses/user_timeline.json', user_timeline, (data) ->
         page = 
-            'layout' : false,
             'tweets' : data
         res.render 'timeline.html', page
 

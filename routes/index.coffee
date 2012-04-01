@@ -51,6 +51,6 @@ exports.timeline = (req, res) ->
 exports.algorithms = (req, res) ->
     log(req)
     page =
-        'title': 'Algorithms',
-        'description': 'Hola'
+        'title': 'Zizzamia.com | Algorithms',
+        'description': 'The algorithms were developed in Object-oriented JavaScript and Canvas, by Leonardo Zizzamia.'
     res.render 'algorithms.html', page

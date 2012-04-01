@@ -1,0 +1,38 @@
+{% extends "algorithms.html" %}
+{% block content_algorithm %}
+<div id="left-canvas" style="width:440px">
+	<table>
+		<tbody id="algorithms-input">
+        	<tr><td><span class="bottom" onclick="algorithmsTime('time');" id="time" >Play</span></td><td><h1>Dijkstra</h1></td></tr>
+            <tr><td colspan="2"><b>T(n) = &Omicron; (E lg V)</b></td></tr>
+        	<tr><td colspan="2"><p>Archi del grafo orientato</p></td></tr>
+			<tr><td><label>s t</label></td><td><input type="text" id="value1" value="10" /></td></tr>
+			<tr><td><label>s y</label></td><td><input type="text" id="value2" value="5" /></td></tr>
+			<tr><td><label>t y</label></td><td><input type="text" id="value3" value="2" /></td></tr>
+			<tr><td><label>t x</label></td><td><input type="text" id="value4" value="1" /></td></tr>
+			<tr><td><label>x z</label></td><td><input type="text" id="value5" value="4" /></td></tr>
+			<tr><td><label>z s</label></td><td><input type="text" id="value6" value="7" /></td></tr>
+			<tr><td><label>z x</label></td><td><input type="text" id="value7" value="6" /></td></tr>
+			<tr><td><label>y t</label></td><td><input type="text" id="value8" value="3" /></td></tr>
+			<tr><td><label>y x</label></td><td><input type="text" id="value9" value="9" /></td></tr>
+			<tr><td><label>y z</label></td><td><input type="text" id="value10" value="2" /></td></tr>
+			<tr>
+				<th><br /><span class="bottom" onclick="update('algorithms-input')">update</span></th>
+				<th><br /><span class="bottom" onclick="clean()">reset</span></th>
+			</tr>
+            <tr><td colspan="2"></td></tr>
+            <tr><td colspan="2"><p>Modifica il peso degli archi, aggiornalo e rieseguilo di nuovo.</p></td></tr>
+		</tbody>
+	</table>
+</div>
+<div id="content-canvas" style="width:500px">
+	<canvas id="canv" width="500" height="350"  style="margin-top:30px;"></canvas>
+    <div id="right-table">
+    </div>
+</div>
+{% endblock %}
+
+{% block js_script %}
+<script src="/js/engine_algorithms.js"></script>
+<script src="/js/algorithms/dijkstra.js"></script>
+{% endblock %}

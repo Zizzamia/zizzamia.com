@@ -1,9 +1,11 @@
 (function() {
-  var algorithms, algorithmsTime, build_min_heap, clone, d, drawEdge, drawGraphLine, drawLine, drawNode, heap_size, min_heapify, nodeCp1x, nodeCp1y, node_number_double_two, node_number_one, node_number_three_two, node_number_two, swap, write_text;
+  var algorithmsTime, build_min_heap, clone, d, drawEdge, drawGraphLine, drawLine, drawNode, heap_size, min_heapify, nodeCp1x, nodeCp1y, node_number_double_two, node_number_one, node_number_three_two, node_number_two, root, swap, write_text;
 
   d = document;
 
-  algorithms = {
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
+
+  root.engine = {
     pause: 0,
     start: 0,
     time: 3000,

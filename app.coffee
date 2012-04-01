@@ -1,6 +1,5 @@
 express = require 'express'
 routes = require './routes'
-pwilang = require 'pwilang'
 
 app = module.exports = express.createServer()
 
@@ -22,6 +21,7 @@ app.configure 'production', () ->
 app.get('/', routes.index)
 app.get('/timeline', routes.timeline)
 app.get('/algorithms', routes.algorithms)
+app.get('/algorithms/dijkstra', routes.dijkstra)
 
 app.listen(22026)
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

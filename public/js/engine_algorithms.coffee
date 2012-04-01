@@ -1,11 +1,13 @@
 d = document
 
-# "algorithms object" is the engine of the all the algorithms
+root = exports ? this
+
+# "engine algorithms object" is the engine of the all the algorithms
 # --------------------
 # pause : if active to 1 disables the algorithm giving the impression of a break
 # start : if it's 0, the initialization of the algorithm starts
 # time  : waiting time between interactions of the algorithm
-algorithms =
+root.engine =
     pause : 0,
     start : 0,
     time  : 3000,

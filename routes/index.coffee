@@ -14,10 +14,10 @@ profile_image =
     screen_name: 'zizzamia',
     size: 'bigger',
     image: ''
-
+    
 twit.userProfileImage 'zizzamia', profile_image, (data) ->
     profile_image['image'] = data.substring(0,data.length - 10) + 'reasonably_small.jpg'
-
+    
 user_timeline =
     include_entities:true, 
     include_rts:true,
@@ -40,14 +40,14 @@ exports.index = (req, res) ->
         'profile_image': profile_image['image'],
     res.render 'index.html', page
 
-
 exports.timeline = (req, res) ->
+    log(req)
     twit.get '/statuses/user_timeline.json', user_timeline, (data) ->
         page = 
-            'tweets' : data
+            'tweets': data,
+            'layout': false
         res.render 'timeline.html', page
-
-
+        
 exports.algorithms = (req, res) ->
     log(req)
     page =

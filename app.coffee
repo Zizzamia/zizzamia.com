@@ -1,5 +1,6 @@
 express = require 'express'
 routes = require './routes'
+pwilang = require 'pwilang'
 
 app = module.exports = express.createServer()
 
@@ -8,10 +9,8 @@ app.register '.html', require('jinjs')
 app.configure ->
     app.use(express.bodyParser())
     app.set('dirname', __dirname)
-    app.set('view options', { layout: false });
     app.use(app.router)
     app.use(express.static(__dirname + "/public"))
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true}))
     app.set('views',__dirname + "/views")
 
 app.configure 'development', () ->

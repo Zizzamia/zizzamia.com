@@ -1,5 +1,5 @@
 (function() {
-  var build_min_heap, d, drawGraphLine, drawLine, drawNode, heap_size, min_heapify, root;
+  var build_min_heap, d, heap_size, min_heapify, root;
 
   d = document;
 
@@ -43,30 +43,34 @@
       }
       return _Clone;
     },
-    node_number_one: function(a, val) {
-      var num, _ref;
-      for (num = 0, _ref = a.length; 0 <= _ref ? num <= _ref : num >= _ref; 0 <= _ref ? num++ : num--) {
+    node_one: function(a, val) {
+      var item, num, _len;
+      for (num = 0, _len = a.length; num < _len; num++) {
+        item = a[num];
         if (val === a[num][0]) break;
       }
       return num;
     },
-    node_number_two: function(a, b, val) {
-      var num, _ref;
-      for (num = 0, _ref = a.length; 0 <= _ref ? num <= _ref : num >= _ref; 0 <= _ref ? num++ : num--) {
+    node_two: function(a, b, val) {
+      var item, num, _len;
+      for (num = 0, _len = a.length; num < _len; num++) {
+        item = a[num];
         if (b[val] === a[num][0]) break;
       }
       return num;
     },
-    node_number_double_two: function(a, b, val1, val2) {
-      var num, _ref;
-      for (num = 0, _ref = a.length; 0 <= _ref ? num <= _ref : num >= _ref; 0 <= _ref ? num++ : num--) {
+    node_double_two: function(a, b, val1, val2) {
+      var item, num, _len;
+      for (num = 0, _len = a.length; num < _len; num++) {
+        item = a[num];
         if (b[val1][val2] === a[num][0]) break;
       }
       return num;
     },
-    node_number_three_two: function(a, b, val1, val2, val3) {
-      var num, _ref;
-      for (num = 0, _ref = a.length; 0 <= _ref ? num <= _ref : num >= _ref; 0 <= _ref ? num++ : num--) {
+    node_three_two: function(a, b, val1, val2, val3) {
+      var item, num, _len;
+      for (num = 0, _len = a.length; num < _len; num++) {
+        item = a[num];
         if (b[val1][val2][val3] === a[num][0]) break;
       }
       return num;
@@ -109,7 +113,7 @@
   };
 
   root.draw = {
-    drawEdge: function(ctx, a, b, cp1x, cp1y, width, color, text, type, r) {
+    edge: function(ctx, a, b, cp1x, cp1y, width, color, text, type, r) {
       var X, Y, pixX, pixY, solX, solY;
       ctx.beginPath();
       ctx.moveTo(engine.coordsX[b], engine.coordsY[b]);
@@ -129,12 +133,12 @@
         solX = 1;
       } else if (engine.coordsX[b] === engine.coordsX[a]) {
         X = engine.coordsX[b];
-      }
-      if ((engine.coordsY[b] !== engine.coordsY[a]) && (type > 0)) {
-        if (cp1x > engine.coordsX[b]) {
-          X += r / 3;
-        } else {
-          X -= r / 3;
+        if ((engine.coordsY[b] !== engine.coordsY[a]) && (type > 0)) {
+          if (cp1x > engine.coordsX[b]) {
+            X += r / 3;
+          } else {
+            X -= r / 3;
+          }
         }
         solX = 2;
       } else {
@@ -194,6 +198,78 @@
       ctx.fillStyle = "black";
       return ctx.fillText(text, cp1x - 5, cp1y);
     },
+    line: function(ctx, a, b, width, color, text) {
+      var posX, posY, pos_x_max, pos_x_min, pos_y_max, pos_y_min;
+      ctx.beginPath();
+      ctx.lineWidth = width;
+      ctx.moveTo(engine.coordsX[a], engine.coordsY[a]);
+      ctx.lineTo(engine.coordsX[a], engine.coordsY[a]);
+      ctx.lineTo(engine.coordsX[b], engine.coordsY[b]);
+      ctx.closePath();
+      ctx.strokeStyle = color;
+      ctx.stroke();
+      pos_x_max = Math.max(engine.coordsX[a], engine.coordsX[b]);
+      pos_x_min = Math.min(engine.coordsX[a], engine.coordsX[b]);
+      pos_y_max = Math.max(engine.coordsY[a], engine.coordsY[b]);
+      pos_y_min = Math.min(engine.coordsY[a], engine.coordsY[b]);
+      posX = (pos_x_max - pos_x_min) / 2 + pos_x_min;
+      posY = (pos_y_max - pos_y_min) / 2 + pos_y_min;
+      ctx.font = "20px Arial";
+      ctx.fillStyle = "black";
+      return ctx.fillText(text, posX, posY);
+    },
+    graph_line: function(ctx) {
+      var color, i, indice, item, width, x, _len, _results;
+      _results = [];
+      for (indice = 0, _len = node.length; indice < _len; indice++) {
+        item = node[indice];
+        _results.push((function() {
+          var _len2, _len3, _ref, _results2;
+          _ref = node[indice][3];
+          _results2 = [];
+          for (i = 0, _len2 = _ref.length; i < _len2; i++) {
+            item = _ref[i];
+            for (x = 0, _len3 = node.length; x < _len3; x++) {
+              item = node[x];
+              if (node[indice][3][i] === node[z][0]) break;
+            }
+            color = '#333';
+            width = '4';
+            if (node[indice][5][i] === 'green') {
+              color = '#7FB24C';
+              width = '5';
+            }
+            _results2.push(draw.line(ctx, indice, z, width, color, node[indice][4][i]));
+          }
+          return _results2;
+        })());
+      }
+      return _results;
+    },
+    node: function(ctx, b, radius, type) {
+      var i, item, _len, _results;
+      _results = [];
+      for (i = 0, _len = node.length; i < _len; i++) {
+        item = node[i];
+        ctx.beginPath();
+        ctx.arc(engine.coordsX[i], engine.coordsY[i], radius, 0, 360, false);
+        ctx.moveTo(engine.coordsX[i], engine.coordsY[i]);
+        ctx.fillStyle = "#7FB24C";
+        if (type === 'prim') {
+          ctx.fillStyle = "#ccc";
+          if (node[i][6] === 'ok') ctx.fillStyle = "#7FB24C";
+          if (node[i][0] === node[b][0]) {
+            ctx.fillStyle = "red";
+            node[b][6] = 'ok';
+          }
+        }
+        ctx.fill();
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "white";
+        _results.push(ctx.fillText(node[i][0], engine.coordsX[i] - 4, engine.coordsY[i] + 6));
+      }
+      return _results;
+    },
     nodeCp1x: function(i, z, ty) {
       var posX, pos_x_max, pos_x_min;
       pos_x_max = Math.max(engine.coordsX[i], engine.coordsX[z]);
@@ -212,7 +288,7 @@
       if (ty === 2) posY += engine.radius * 2;
       return posY;
     },
-    write_text: function(text) {
+    text: function(text) {
       var div, p;
       div = d.getElementById('right-table');
       p = d.createElement('p');
@@ -220,76 +296,6 @@
       p.innerHTML = text;
       return div.appendChild(p);
     }
-  };
-
-  drawLine = function(ctx, a, b, width, color, text) {
-    var posX, posY, pos_x_max, pos_x_min, pos_y_max, pos_y_min;
-    ctx.beginPath();
-    ctx.lineWidth = width;
-    ctx.moveTo(engine.coordsX[a], engine.coordsY[a]);
-    ctx.lineTo(engine.coordsX[a], engine.coordsY[a]);
-    ctx.lineTo(engine.coordsX[b], engine.coordsY[b]);
-    ctx.closePath();
-    ctx.strokeStyle = color;
-    ctx.stroke();
-    pos_x_max = Math.max(engine.coordsX[a], engine.coordsX[b]);
-    pos_x_min = Math.min(engine.coordsX[a], engine.coordsX[b]);
-    pos_y_max = Math.max(engine.coordsY[a], engine.coordsY[b]);
-    pos_y_min = Math.min(engine.coordsY[a], engine.coordsY[b]);
-    posX = (pos_x_one - pos_x_min) / 2 + pos_x_min;
-    posY = (pos_y_max - pos_y_min) / 2 + pos_y_min;
-    ctx.font = "20px Arial";
-    ctx.fillStyle = "black";
-    return ctx.fillText(text, posX, posY);
-  };
-
-  drawGraphLine = function(ctx) {
-    var color, i, indice, width, x, _ref, _results;
-    _results = [];
-    for (indice = 0, _ref = node.length; 0 <= _ref ? indice <= _ref : indice >= _ref; 0 <= _ref ? indice++ : indice--) {
-      _results.push((function() {
-        var _ref2, _ref3, _results2;
-        _results2 = [];
-        for (i = 0, _ref2 = node[indice][3].length; 0 <= _ref2 ? i <= _ref2 : i >= _ref2; 0 <= _ref2 ? i++ : i--) {
-          for (x = 0, _ref3 = node.length; 0 <= _ref3 ? x <= _ref3 : x >= _ref3; 0 <= _ref3 ? x++ : x--) {
-            if (node[indice][3][i] === node[z][0]) break;
-          }
-          color = '#333';
-          width = '4';
-          if (node[indice][5][i] === 'green') {
-            color = '#7FB24C';
-            width = '5';
-          }
-          _results2.push(drawLine(ctx, indice, z, width, color, node[indice][4][i]));
-        }
-        return _results2;
-      })());
-    }
-    return _results;
-  };
-
-  drawNode = function(ctx, b, radius, type) {
-    var i, _ref, _results;
-    _results = [];
-    for (i = 0, _ref = node.length; 0 <= _ref ? i <= _ref : i >= _ref; 0 <= _ref ? i++ : i--) {
-      ctx.beginPath();
-      ctx.arc(engine.coordsX[i], engine.coordsY[i], radius, 0, 360, false);
-      ctx.moveTo(engine.coordsX[i], engine.coordsY[i]);
-      ctx.fillStyle = "#7FB24C";
-      if (type === 'prim') {
-        ctx.fillStyle = "#ccc";
-        if (node[i][6] === 'ok') ctx.fillStyle = "#7FB24C";
-        if (node[i][0] === node[b][0]) {
-          ctx.fillStyle = "red";
-          node[b][6] = 'ok';
-        }
-      }
-      ctx.fill();
-      ctx.font = "20px Arial";
-      ctx.fillStyle = "white";
-      _results.push(ctx.fillText(node[i][0], engine.coordsX[i] - 4, engine.coordsY[i] + 6));
-    }
-    return _results;
   };
 
 }).call(this);

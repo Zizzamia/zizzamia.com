@@ -47,40 +47,40 @@ root.engine =
                 _Clone[_IdClone] = _ArryToClone[_IdClone]
         return _Clone
     
-    node_number_one : (a, val) ->
+    node_one : (a, val) ->
         # a : List where research  
         # val : value to search
-        for num in [0..a.length]
+        for item, num in a
             if val == a[num][0]
                 break
         return num
     
-    node_number_two : (a, b, val) ->
+    node_two : (a, b, val) ->
         # a : List where research  
         # b : list from which to take
         # val : value to search
-        for num in [0..a.length] 
+        for item, num in a
             if b[val] == a[num][0]
                 break
         return num
     
-    node_number_double_two : (a, b, val1, val2) ->
+    node_double_two : (a, b, val1, val2) ->
         # a : List where research  
         # b : list from which to take
         # val1 : index
         # val2 : value to search
-        for num in [0..a.length]
+        for item, num in a
             if b[val1][val2] == a[num][0]
                 break
         return num
     
-    node_number_three_two : (a, b, val1, val2, val3) ->
+    node_three_two : (a, b, val1, val2, val3) ->
         # a : List where research  
         # b : list from which to take
         # val1 : index
         # val2 : value to search
         # val3 :
-        for num in [0..a.length]
+        for item, num in a
             if b[val1][val2][val3] == a[num][0]
                 break
         return num
@@ -116,7 +116,7 @@ build_min_heap = ( A ) ->
 		min_heapify( A, num )
 	
 root.draw = 
-    drawEdge : (ctx, a, b, cp1x, cp1y, width, color, text, type, r) ->
+    edge : (ctx, a, b, cp1x, cp1y, width, color, text, type, r) ->
         # r : radius
         ctx.beginPath()
         ctx.moveTo(engine.coordsX[b],engine.coordsY[b]);
@@ -144,13 +144,12 @@ root.draw =
             solX = 1
         else if engine.coordsX[b] == engine.coordsX[a]
             X = engine.coordsX[b]
-        
-        # vertical curved arches, right and left
-        if (engine.coordsY[b] != engine.coordsY[a]) and (type > 0)
-            if cp1x > engine.coordsX[b]
-                X += r / 3
-            else
-                X -= r / 3 
+            # vertical curved arches, right and left
+            if (engine.coordsY[b] != engine.coordsY[a]) and (type > 0)
+                if cp1x > engine.coordsX[b]
+                    X += r / 3
+                else
+                    X -= r / 3 
             solX = 2
         else 
             X = engine.coordsX[b] + r - 4
@@ -160,19 +159,19 @@ root.draw =
                 X += r / 7
             solX = 3
         
-        # Calculate the Y position of the arrow
         if pixY > 1 and pixY <= 2
+            # Calculate the Y position of the arrow
             if pixX > 4 
                 pixY *= (r / 7)
             else 
                 pixY = pixY * (r / 2) - 1
         else if pixY > 2 and pixY <= 3
             pixY *= r / 8
-        # arc s t
         else if pixY > 3 and pixY <= 5
+            # arc s t
             pixY *= r / 5
-        # arcs y x, t z
         else if pixY > 5 and pixY <= 10
+            # arcs y x, t z
             pixY *= r / 8
         else if pixY > 10
             pixY *= r / 13
@@ -219,6 +218,65 @@ root.draw =
         ctx.font = ("20px Arial")
         ctx.fillStyle = "black"
         ctx.fillText( text, cp1x-5, cp1y)
+        
+    line : (ctx, a, b, width, color, text) ->
+        ctx.beginPath()
+        ctx.lineWidth = width
+        ctx.moveTo( engine.coordsX[a], engine.coordsY[a] )  
+        ctx.lineTo( engine.coordsX[a], engine.coordsY[a] )
+        ctx.lineTo( engine.coordsX[b], engine.coordsY[b] )
+        ctx.closePath()
+        ctx.strokeStyle = color
+        ctx.stroke()
+        
+        pos_x_max = Math.max(engine.coordsX[a],engine.coordsX[b])
+        pos_x_min = Math.min(engine.coordsX[a],engine.coordsX[b])
+        
+        pos_y_max = Math.max(engine.coordsY[a],engine.coordsY[b])
+        pos_y_min = Math.min(engine.coordsY[a],engine.coordsY[b])
+        
+        posX = (pos_x_max - pos_x_min)/2 + pos_x_min
+        posY = (pos_y_max - pos_y_min)/2 + pos_y_min
+        
+        # Writes the weight of the arc between two nodes.
+        ctx.font = "20px Arial"
+        ctx.fillStyle = "black"
+        ctx.fillText( text, posX, posY)
+        
+    graph_line : (ctx) ->
+        for item, indice in node
+            for item, i in node[indice][3]
+                for item, x in node
+                    if node[indice][3][i] == node[z][0]
+                        break
+                color = '#333'
+                width = '4'
+                if node[indice][5][i] == 'green'
+                    color = '#7FB24C'
+                    width = '5'	
+                draw.line(ctx, indice, z, width, color, node[indice][4][i])
+    
+    node : (ctx, b, radius, type) ->
+        for item, i in node
+            ctx.beginPath()
+            # arc(x, y, raggio, startAngle, endAngle, in senso antiorario) , Math.PI*2
+            ctx.arc(engine.coordsX[i],engine.coordsY[i],radius,0,360,false)
+            # moveTo(x, y)
+            ctx.moveTo(engine.coordsX[i],engine.coordsY[i])
+            
+            ctx.fillStyle = "#7FB24C"
+            if type == 'prim'
+                ctx.fillStyle = "#ccc"
+                if node[i][6] == 'ok'
+                    ctx.fillStyle = "#7FB24C"
+                if node[i][0] == node[b][0]
+                    ctx.fillStyle = "red"
+                    node[b][6] = 'ok'
+            
+            ctx.fill()
+            ctx.font = "20px Arial"
+            ctx.fillStyle = "white"
+            ctx.fillText( node[i][0], engine.coordsX[i] - 4, engine.coordsY[i] + 6)
     
     nodeCp1x : (i, z, ty) ->
         pos_x_max = Math.max(engine.coordsX[i],engine.coordsX[z])
@@ -242,72 +300,9 @@ root.draw =
             posY += engine.radius * 2
         return posY
         
-    write_text : (text) ->
+    text : (text) ->
     	div = d.getElementById('right-table')
     	p = d.createElement('p')
     	p.setAttribute('id','text-output')
     	p.innerHTML = text
     	div.appendChild(p)
-
-
-drawLine = (ctx, a, b, width, color, text) ->
-    ctx.beginPath()
-    ctx.lineWidth = width
-    ctx.moveTo( engine.coordsX[a], engine.coordsY[a] )  
-    ctx.lineTo( engine.coordsX[a], engine.coordsY[a] )
-    ctx.lineTo( engine.coordsX[b], engine.coordsY[b] )
-    ctx.closePath()
-    ctx.strokeStyle = color							
-    ctx.stroke()
-    
-    pos_x_max = Math.max(engine.coordsX[a],engine.coordsX[b])
-    pos_x_min = Math.min(engine.coordsX[a],engine.coordsX[b])
-    
-    pos_y_max = Math.max(engine.coordsY[a],engine.coordsY[b])
-    pos_y_min = Math.min(engine.coordsY[a],engine.coordsY[b])
-    
-    posX = (pos_x_one - pos_x_min)/2 + pos_x_min
-    posY = (pos_y_max - pos_y_min)/2 + pos_y_min
-    
-    # Writes the weight of the arc between two nodes.
-    ctx.font = ("20px Arial")
-    ctx.fillStyle = "black"
-    ctx.fillText( text, posX, posY)
-
-
-drawGraphLine = (ctx) ->
-    for indice in [0..node.length]
-        for i in [0..node[indice][3].length]
-            for x in [0..node.length]
-                if node[indice][3][i] == node[z][0] 
-                    break
-            color = '#333'
-            width = '4'	
-            if node[indice][5][i] == 'green'
-                color = '#7FB24C'
-                width = '5'	
-            drawLine(ctx, indice, z, width, color, node[indice][4][i])
-
-
-drawNode = (ctx, b, radius, type) ->
-    for i in [0..node.length]
-        ctx.beginPath()
-        # arc(x, y, raggio, startAngle, endAngle, in senso antiorario) , Math.PI*2
-        ctx.arc(engine.coordsX[i],engine.coordsY[i],radius,0,360,false)
-        # moveTo(x, y)
-        ctx.moveTo(engine.coordsX[i],engine.coordsY[i])
-        
-        ctx.fillStyle = "#7FB24C";
-        if type == 'prim'
-            ctx.fillStyle = "#ccc";
-            if node[i][6] == 'ok'
-                ctx.fillStyle = "#7FB24C";
-            if node[i][0] == node[b][0]
-                ctx.fillStyle = "red";
-                node[b][6] = 'ok'
-        
-        ctx.fill();
-        
-        ctx.font = ("20px Arial");
-        ctx.fillStyle = "white";
-        ctx.fillText( node[i][0], engine.coordsX[i] - 4, engine.coordsY[i] + 6);

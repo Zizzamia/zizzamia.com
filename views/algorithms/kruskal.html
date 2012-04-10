@@ -1,0 +1,125 @@
+{% extends "algorithms/index.html" %}
+{% block content_algorithm %}
+<div class="algorithm">
+    <h1>Kruskal <small>T(n) = &Omicron; (E lg V)</small></h1>
+    <p>Kruskal's algorithm is an algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. 
+        This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the 
+        edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest 
+        (a minimum spanning tree for each connected component). Kruskal's algorithm is an example of a greedy algorithm.
+        <small><a href="http://en.wikipedia.org/wiki/Kruskal%27s_algorithm" target="_blank">Text from Wikipedia</a></small>
+    </p>
+    <span class="button button-orange" onclick="engine.algorithms_time('time');" id="time" >Play</span>
+    <span class="button" onclick="dijkstra.update('algorithms-input')">update</span>  
+    <span class="button" onclick="dijkstra.clean()">reset</span>
+    <div class="form-horizontal">
+        <fieldset>
+            <p>Archi del grafo non orientato</p>
+            <p>Modifica il peso degli archi, aggiornalo e rieseguilo di nuovo.</p>
+            <section class="left_algorithm">
+                <div class="control-group">
+                    <label>a b</label>
+                    <div class="controls">
+                	   <input type="text" id="value1" class="input-mini" value="4" />
+            		</div>                                             
+                </div>                                                 
+                <div class="control-group">                            
+                    <label>a h</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value2" class="input-mini" value="8" />
+            		</div>                                             
+                </div>                                         
+                <div class="control-group">                            
+                    <label>b c</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value3" class="input-mini" value="8" />
+            		</div>                                             
+                </div>   
+            </section>
+            <section class="left_algorithm">                                              
+                <div class="control-group">                            
+                    <label>b h</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value4" class="input-mini" value="11" />
+            		</div>                                             
+                </div>                                                 
+                <div class="control-group">                            
+                    <label>c d</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value5" class="input-mini" value="7" />
+            		</div>                                             
+                </div>                         
+                <div class="control-group">                            
+                    <label>c f</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value6" class="input-mini" value="4" />
+            		</div>
+                </div>
+            </section>
+            <section class="left_algorithm">
+                <div class="control-group">                            
+                    <label>c i</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value7" class="input-mini" value="2" />
+            		</div>
+                </div>
+                <div class="control-group">                            
+                    <label>d e</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value8" class="input-mini" value="9" />
+            		</div>
+                </div>
+                <div class="control-group">                            
+                    <label>d f</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value9" class="input-mini" value="14" />
+            		</div>
+                </div>
+            </section>
+            <section class="left_algorithm">
+                <div class="control-group">                            
+                    <label>e f</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value10" class="input-mini" value="10" />
+            		</div>
+                </div>
+                <div class="control-group">                            
+                    <label>f g</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value9" class="input-mini" value="2" />
+            		</div>
+                </div>
+                <div class="control-group">                            
+                    <label>g h</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value10" class="input-mini" value="1" />
+            		</div>
+                </div>
+            </section>
+            <section class="left_algorithm">
+                <div class="control-group">                            
+                    <label>g i</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value9" class="input-mini" value="6" />
+            		</div>
+                </div>
+                <div class="control-group">                            
+                    <label>h i</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value10" class="input-mini" value="7" />
+            		</div>
+                </div>
+            </section>
+        </fieldset>
+    </div>
+</div>
+<div id="content-canvas" style="width:500px">
+	<canvas id="canv" width="500" height="350"></canvas>
+    <div id="right-table">
+    </div>
+</div>
+{% endblock %}
+
+{% block js_script %}
+<script src="/js/engine_algorithms.js"></script>
+<script src="/js/algorithms/kruskal.js"></script>
+{% endblock %}

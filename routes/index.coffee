@@ -51,13 +51,20 @@ exports.timeline = (req, res) ->
 exports.algorithms = (req, res) ->
     log(req)
     page =
-        'title': 'Zizzamia.com | Algorithms',
+        'title': 'Algorithms',
         'description': 'The algorithms were developed in JavaScript and Canvas, by Leonardo Zizzamia.'
     res.render 'algorithms/index.html', page
+    
+exports.kruskal = (req, res) ->
+    log(req)
+    page =
+        'title': 'Algorithms | Kruskal',
+        'description': 'Javascript and canvas Kruskal'
+    res.render 'algorithms/kruskal.html', page
     
 exports.dijkstra = (req, res) ->
     log(req)
     page =
-        'title': 'Zizzamia.com | Algorithms',
-        'description': 'The algorithms were developed in JavaScript and Canvas, by Leonardo Zizzamia.'
+        'title': 'Algorithms | Dijkstra',
+        'description': 'Javascript and canvas Dijkstra'
     res.render 'algorithms/dijkstra.html', page

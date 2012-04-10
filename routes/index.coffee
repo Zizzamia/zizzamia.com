@@ -52,12 +52,12 @@ exports.algorithms = (req, res) ->
     log(req)
     page =
         'title': 'Zizzamia.com | Algorithms',
-        'description': 'The algorithms were developed in Object-oriented JavaScript and Canvas, by Leonardo Zizzamia.'
+        'description': 'The algorithms were developed in JavaScript and Canvas, by Leonardo Zizzamia.'
     res.render 'algorithms/index.html', page
     
 exports.dijkstra = (req, res) ->
     log(req)
     page =
         'title': 'Zizzamia.com | Algorithms',
-        'description': 'The algorithms were developed in Object-oriented JavaScript and Canvas, by Leonardo Zizzamia.'
+        'description': 'The algorithms were developed in JavaScript and Canvas, by Leonardo Zizzamia.'
     res.render 'algorithms/dijkstra.html', page

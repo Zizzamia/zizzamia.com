@@ -1,32 +1,94 @@
-{% extends "algorithms.html" %}
+{% extends "algorithms/index.html" %}
 {% block content_algorithm %}
-<div id="left-canvas" style="width:440px">
-	<table>
-		<tbody id="algorithms-input">
-        	<tr><td><span class="bottom" onclick="algorithmsTime('time');" id="time" >Play</span></td><td><h1>Dijkstra</h1></td></tr>
-            <tr><td colspan="2"><b>T(n) = &Omicron; (E lg V)</b></td></tr>
-        	<tr><td colspan="2"><p>Archi del grafo orientato</p></td></tr>
-			<tr><td><label>s t</label></td><td><input type="text" id="value1" value="10" /></td></tr>
-			<tr><td><label>s y</label></td><td><input type="text" id="value2" value="5" /></td></tr>
-			<tr><td><label>t y</label></td><td><input type="text" id="value3" value="2" /></td></tr>
-			<tr><td><label>t x</label></td><td><input type="text" id="value4" value="1" /></td></tr>
-			<tr><td><label>x z</label></td><td><input type="text" id="value5" value="4" /></td></tr>
-			<tr><td><label>z s</label></td><td><input type="text" id="value6" value="7" /></td></tr>
-			<tr><td><label>z x</label></td><td><input type="text" id="value7" value="6" /></td></tr>
-			<tr><td><label>y t</label></td><td><input type="text" id="value8" value="3" /></td></tr>
-			<tr><td><label>y x</label></td><td><input type="text" id="value9" value="9" /></td></tr>
-			<tr><td><label>y z</label></td><td><input type="text" id="value10" value="2" /></td></tr>
-			<tr>
-				<th><br /><span class="bottom" onclick="update('algorithms-input')">update</span></th>
-				<th><br /><span class="bottom" onclick="clean()">reset</span></th>
-			</tr>
-            <tr><td colspan="2"></td></tr>
-            <tr><td colspan="2"><p>Modifica il peso degli archi, aggiornalo e rieseguilo di nuovo.</p></td></tr>
-		</tbody>
-	</table>
+<div class="algorithm">
+    <h1>Dijkstra <small>T(n) = &Omicron; (E lg V)</small></h1>
+    <p>Dijkstra's algorithm, conceived by Dutch computer scientist Edsger Dijkstra in 1956 and published in 1959,is a 
+        graph search algorithm that solves the single-source shortest path problem for a graph with nonnegative edge 
+        path costs, producing a shortest path tree. This algorithm is often used in routing and as a subroutine in 
+        other graph algorithms.
+        <small><a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm" target="_blank">Font by Wikipedia</a></small>
+    </p>
+    <span class="button button-orange" onclick="engine.algorithms_time('time');" id="time" >Play</span>
+    <span class="button" onclick="dijkstra.update('algorithms-input')">update</span>  
+    <span class="button" onclick="dijkstra.clean()">reset</span>
+    <div class="form-horizontal">
+        <fieldset>
+            <p>Modifica il peso degli archi, aggiornalo e rieseguilo di nuovo.</p>
+            <section class="left_algorithm">
+                <div class="control-group">
+                    <label>s t</label>
+                    <div class="controls">
+                	   <input type="text" id="value1" class="input-mini" value="10" />
+            		</div>                                             
+                </div>                                                 
+                <div class="control-group">                            
+                    <label>s y</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value2" class="input-mini" value="5" />
+            		</div>                                             
+                </div>
+            </section>
+            <section class="left_algorithm">                                              
+                <div class="control-group">                            
+                    <label>t y</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value3" class="input-mini" value="2" />
+            		</div>                                             
+                </div>                                                 
+                <div class="control-group">                            
+                    <label>t x</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value4" class="input-mini" value="1" />
+            		</div>                                             
+                </div>                                                 
+            </section>                                                 
+            <section class="left_algorithm"> 
+                <div class="control-group">                            
+                    <label>x z</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value5" class="input-mini" value="4" />
+            		</div>                                             
+                </div>                         
+                <div class="control-group">                            
+                    <label>z s</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value6" class="input-mini" value="7" />
+            		</div>
+                </div>
+            </section>
+            <section class="left_algorithm">
+                <div class="control-group">                            
+                    <label>z x</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value7" class="input-mini" value="6" />
+            		</div>
+                </div>
+                <div class="control-group">                            
+                    <label>y t</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value8" class="input-mini" value="3" />
+            		</div>
+                </div>
+            </section>
+            <section class="left_algorithm">
+                <div class="control-group">                            
+                    <label>y x</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value9" class="input-mini" value="9" />
+            		</div>
+                </div>
+                <div class="control-group">                            
+                    <label>y z</label>                                 
+                    <div class="controls">                             
+                	   <input type="text" id="value10" class="input-mini" value="2" />
+            		</div>
+                </div>
+            </section>
+        </fieldset>
+    </div>
 </div>
 <div id="content-canvas" style="width:500px">
-	<canvas id="canv" width="500" height="350"  style="margin-top:30px;"></canvas>
+	<canvas id="canv" width="500" height="350"></canvas>
     <div id="right-table">
     </div>
 </div>

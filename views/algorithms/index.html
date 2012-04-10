@@ -18,17 +18,15 @@
         </div>
     </nav>
     <div class="right span8">
-        <header>
+        <header class="head_algorithms">
             <section class="row">
-                <h1 class="title">Algorithms</h1>
-                <p class="Ptitle">The algorithms were developed in Object-oriented JavaScript and Canvas, by Leonardo Zizzamia.</p>
-                <div class="content_algorithm">
-                    {% block content_algorithm %}
-                    {% endblock %}
-                </div>
+                <h1>Algorithms</h1>
+                <p>The algorithms were developed in JavaScript and Canvas</p>
             </section>
         </header>
-        <div id="twitter">
+        <div class="content_algorithm">
+            {% block content_algorithm %}
+            {% endblock %}
         </div>
     </div>
 </section>

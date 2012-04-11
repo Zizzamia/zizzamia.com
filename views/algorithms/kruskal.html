@@ -8,13 +8,10 @@
         (a minimum spanning tree for each connected component). Kruskal's algorithm is an example of a greedy algorithm.
         <small><a href="http://en.wikipedia.org/wiki/Kruskal%27s_algorithm" target="_blank">Text from Wikipedia</a></small>
     </p>
-    <span class="button button-orange" onclick="engine.algorithms_time('time');" id="time" >Play</span>
-    <span class="button" onclick="update('algorithms-input')">update</span>  
-    <span class="button" onclick="clean()">reset</span>
-    <div class="form-horizontal">
+    <div class="form-horizontal" id="form_kruskal">
         <fieldset>
-            <p>Archi del grafo non orientato</p>
-            <p>Modifica il peso degli archi, aggiornalo e rieseguilo di nuovo.</p>
+            <h3>Edges of a undirected graph</h3>
+            <p>Changing the weight of the edges, update it and run it again.</p>
             <section class="left_algorithm">
                 <div class="control-group">
                     <label>a b</label>
@@ -110,6 +107,9 @@
                 </div>
             </section>
         </fieldset>
+        <span class="button button-orange" onclick="engine.algorithms_time('time');" id="time" >Play</span>
+        <span class="button" onclick="kruskal.update('form_kruskal')">update</span>  
+        <span class="button" onclick="kruskal.clean()">reset</span>
     </div>
 </div>
 <div id="content-canvas" style="width:500px">

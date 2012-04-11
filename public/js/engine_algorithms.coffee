@@ -28,14 +28,14 @@ root.engine =
     algorithms_time : (id) ->
         val = d.getElementById(id)
         value = val.childNodes[0].nodeValue
-        if value == 'Pausa'
+        if value == 'Pause'
             this.timeOn = 0
             val.childNodes[0].nodeValue = 'Play'
             clearTimeout(engine.timePause)
         
         if value == 'Play'
             this.timeOn = 1
-            val.childNodes[0].nodeValue = 'Pausa'
+            val.childNodes[0].nodeValue = 'Pause'
             this.timePause = setTimeout('engine_time()', 2000)
     
     clone : (_ArryToClone) ->
@@ -91,35 +91,37 @@ root.engine =
         list[y] = list[x]
         list[x] = b
 
-heap_size = 0;
 
-min_heapify = ( A, i ) ->
-	l = 2*i
-	br = 2*i+1
-	min = 9999999
-	
-	if ( l <= heap_size ) and ( A[l][1] < A[i][1] )
-		min = l;
-	else  
-	    min = i;
-	    
-	if ( r <= heap_size ) and ( A[r][1] < A[Min][1] )
-		min = r;
-		
-	if min != i
-		swap( A, i, min)
-		min_heapify( A, min )
+root.heap =
+    size : 0,
+    min_heapify : ( A, i ) ->
+        l = 2*i
+        br = 2*i+1
+        min = 9999999
+        
+        if ( l <= heap_size ) and ( A[l][1] < A[i][1] )
+            min = l
+        else
+            min = i
+        
+        if ( r <= heap_size ) and ( A[r][1] < A[Min][1] )
+            min = r
+        
+        if min != i
+            swap( A, i, min)
+            heap.min_heapify( A, min )
+    
+    build_min_heap : ( A ) ->
+        heap.size = A.length - 1;
+        for num in [Math.ceil(A.length/2)..0]
+            heap.min_heapify( A, num )
 
-build_min_heap = ( A ) ->
-	heap_size = A.length - 1;
-	for num in [Math.ceil(A.length/2)..0]
-		min_heapify( A, num )
-	
+
 root.draw = 
     edge : (ctx, a, b, cp1x, cp1y, width, color, text, type, r) ->
         # r : radius
         ctx.beginPath()
-        ctx.moveTo(engine.coordsX[b],engine.coordsY[b]);
+        ctx.moveTo(engine.coordsX[b],engine.coordsY[b])
         ctx.lineWidth = width
         ctx.quadraticCurveTo(cp1x, cp1y, engine.coordsX[a], engine.coordsY[a]) 
         ctx.strokeStyle = color					
@@ -198,7 +200,7 @@ root.draw =
             solY = 3
         
         ctx.arc(X,Y,5,0,360,false)
-        ctx.moveTo(X,Y);
+        ctx.moveTo(X,Y)
         ctx.fillStyle = color
         ctx.fill()
         
@@ -215,7 +217,7 @@ root.draw =
             cp1x -= 15
             cp1y -= 20
         
-        ctx.font = ("20px Arial")
+        ctx.font = "20px Arial"
         ctx.fillStyle = "black"
         ctx.fillText( text, cp1x-5, cp1y)
         
@@ -256,7 +258,7 @@ root.draw =
                     width = '5'	
                 draw.line(ctx, indice, z, width, color, node[indice][4][i])
     
-    node : (ctx, b, radius, type) ->
+    node : (ctx, b, radius, type, node) ->
         for item, i in node
             ctx.beginPath()
             # arc(x, y, raggio, startAngle, endAngle, in senso antiorario) , Math.PI*2
@@ -301,8 +303,8 @@ root.draw =
         return posY
         
     text : (text) ->
-    	div = d.getElementById('right-table')
-    	p = d.createElement('p')
-    	p.setAttribute('id','text-output')
-    	p.innerHTML = text
-    	div.appendChild(p)
+        div = d.getElementById('right-table')
+        p = d.createElement('p')
+        p.setAttribute('id','text-output')
+        p.innerHTML = text
+        div.appendChild(p)

@@ -1,5 +1,5 @@
 (function() {
-  var build_min_heap, d, heap_size, min_heapify, root;
+  var d, root;
 
   d = document;
 
@@ -19,14 +19,14 @@
       var val, value;
       val = d.getElementById(id);
       value = val.childNodes[0].nodeValue;
-      if (value === 'Pausa') {
+      if (value === 'Pause') {
         this.timeOn = 0;
         val.childNodes[0].nodeValue = 'Play';
         clearTimeout(engine.timePause);
       }
       if (value === 'Play') {
         this.timeOn = 1;
-        val.childNodes[0].nodeValue = 'Pausa';
+        val.childNodes[0].nodeValue = 'Pause';
         return this.timePause = setTimeout('engine_time()', 2000);
       }
     },
@@ -83,33 +83,33 @@
     }
   };
 
-  heap_size = 0;
-
-  min_heapify = function(A, i) {
-    var br, l, min;
-    l = 2 * i;
-    br = 2 * i + 1;
-    min = 9999999;
-    if ((l <= heap_size) && (A[l][1] < A[i][1])) {
-      min = l;
-    } else {
-      min = i;
+  root.heap = {
+    size: 0,
+    min_heapify: function(A, i) {
+      var br, l, min;
+      l = 2 * i;
+      br = 2 * i + 1;
+      min = 9999999;
+      if ((l <= heap_size) && (A[l][1] < A[i][1])) {
+        min = l;
+      } else {
+        min = i;
+      }
+      if ((r <= heap_size) && (A[r][1] < A[Min][1])) min = r;
+      if (min !== i) {
+        swap(A, i, min);
+        return heap.min_heapify(A, min);
+      }
+    },
+    build_min_heap: function(A) {
+      var num, _ref, _results;
+      heap.size = A.length - 1;
+      _results = [];
+      for (num = _ref = Math.ceil(A.length / 2); _ref <= 0 ? num <= 0 : num >= 0; _ref <= 0 ? num++ : num--) {
+        _results.push(heap.min_heapify(A, num));
+      }
+      return _results;
     }
-    if ((r <= heap_size) && (A[r][1] < A[Min][1])) min = r;
-    if (min !== i) {
-      swap(A, i, min);
-      return min_heapify(A, min);
-    }
-  };
-
-  build_min_heap = function(A) {
-    var num, _ref, _results;
-    heap_size = A.length - 1;
-    _results = [];
-    for (num = _ref = Math.ceil(A.length / 2); _ref <= 0 ? num <= 0 : num >= 0; _ref <= 0 ? num++ : num--) {
-      _results.push(min_heapify(A, num));
-    }
-    return _results;
   };
 
   root.draw = {
@@ -246,7 +246,7 @@
       }
       return _results;
     },
-    node: function(ctx, b, radius, type) {
+    node: function(ctx, b, radius, type, node) {
       var i, item, _len, _results;
       _results = [];
       for (i = 0, _len = node.length; i < _len; i++) {

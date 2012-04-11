@@ -1,6 +1,6 @@
 {% extends "algorithms/index.html" %}
 {% block content_algorithm %}
-<div class="algorithm">
+<div class="algorithm dijkstra">
     <h1>Dijkstra <small>T(n) = &Omicron; (E lg V)</small></h1>
     <p>Dijkstra's algorithm, conceived by Dutch computer scientist Edsger Dijkstra in 1956 and published in 1959,is a 
         graph search algorithm that solves the single-source shortest path problem for a graph with nonnegative edge 
@@ -8,22 +8,19 @@
         other graph algorithms.
         <small><a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm" target="_blank">Text from Wikipedia</a></small>
     </p>
-    <span class="button button-orange" onclick="engine.algorithms_time('time');" id="time" >Play</span>
-    <span class="button" onclick="update('algorithms-input')">update</span>  
-    <span class="button" onclick="clean()">reset</span>
-    <div class="form-horizontal">
+    <div class="form-horizontal" id="form_dijkstra">
         <fieldset>
-            <p>Archi del grafo orientato</p>
-            <p>Modifica il peso degli archi, aggiornalo e rieseguilo di nuovo.</p>
+            <h3>Edges of a directed graph</h3>
+            <p>Changing the weight of the edges, update it and run it again.</p>
             <section class="left_algorithm">
                 <div class="control-group">
-                    <label>s t</label>
+                    <label>s → t</label>
                     <div class="controls">
                 	   <input type="text" id="value1" class="input-mini" value="10" />
             		</div>                                             
                 </div>                                                 
                 <div class="control-group">                            
-                    <label>s y</label>                                 
+                    <label>s → y</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value2" class="input-mini" value="5" />
             		</div>                                             
@@ -31,13 +28,13 @@
             </section>
             <section class="left_algorithm">                                              
                 <div class="control-group">                            
-                    <label>t y</label>                                 
+                    <label>t → y</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value3" class="input-mini" value="2" />
             		</div>                                             
                 </div>                                                 
                 <div class="control-group">                            
-                    <label>t x</label>                                 
+                    <label>t → x</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value4" class="input-mini" value="1" />
             		</div>                                             
@@ -45,13 +42,13 @@
             </section>                                                 
             <section class="left_algorithm"> 
                 <div class="control-group">                            
-                    <label>x z</label>                                 
+                    <label>x → z</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value5" class="input-mini" value="4" />
             		</div>                                             
                 </div>                         
                 <div class="control-group">                            
-                    <label>z s</label>                                 
+                    <label>z → s</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value6" class="input-mini" value="7" />
             		</div>
@@ -59,13 +56,13 @@
             </section>
             <section class="left_algorithm">
                 <div class="control-group">                            
-                    <label>z x</label>                                 
+                    <label>z → x</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value7" class="input-mini" value="6" />
             		</div>
                 </div>
                 <div class="control-group">                            
-                    <label>y t</label>                                 
+                    <label>y → t</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value8" class="input-mini" value="3" />
             		</div>
@@ -73,19 +70,22 @@
             </section>
             <section class="left_algorithm">
                 <div class="control-group">                            
-                    <label>y x</label>                                 
+                    <label>y → x</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value9" class="input-mini" value="9" />
             		</div>
                 </div>
                 <div class="control-group">                            
-                    <label>y z</label>                                 
+                    <label>y → z</label>                                 
                     <div class="controls">                             
                 	   <input type="text" id="value10" class="input-mini" value="2" />
             		</div>
                 </div>
             </section>
         </fieldset>
+        <span class="button button-orange" onclick="engine.algorithms_time('time');" id="time" >Play</span>
+        <span class="button" onclick="dijkstra.update('form_dijkstra')">Update</span>  
+        <span class="button" onclick="dijkstra.clean()">Clean</span>
     </div>
 </div>
 <div id="content-canvas" style="width:500px">

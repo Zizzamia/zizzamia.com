@@ -617,6 +617,11 @@ footer {
     width: 147px;
 }
 
+.tweet_right {
+    float: right;
+    margin-top: 7px;
+}
+
 .algorithm h1 {
     border-bottom: 1px solid rgba(78, 68, 60, 0.1);
     font-size: 24px;

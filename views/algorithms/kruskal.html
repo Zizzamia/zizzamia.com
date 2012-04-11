@@ -1,6 +1,14 @@
 {% extends "algorithms/index.html" %}
 {% block content_algorithm %}
 <div class="algorithm">
+    <div class="tweet_right">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="zizzamia">Tweet</a>
+        <script>!function(d,s,id){
+            var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){
+                js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        </script>
+    </div>
     <h1>Kruskal <small>T(n) = &Omicron; (E lg V)</small></h1>
     <p>Kruskal's algorithm is an algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. 
         This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the 

@@ -1,6 +1,14 @@
 {% extends "algorithms/index.html" %}
 {% block content_algorithm %}
 <div class="algorithm dijkstra">
+    <div class="tweet_right">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="zizzamia">Tweet</a>
+        <script>!function(d,s,id){
+            var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){
+                js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        </script>
+    </div>
     <h1>Dijkstra <small>T(n) = &Omicron; (E lg V)</small></h1>
     <p>Dijkstra's algorithm, conceived by Dutch computer scientist Edsger Dijkstra in 1956 and published in 1959,is a 
         graph search algorithm that solves the single-source shortest path problem for a graph with nonnegative edge 

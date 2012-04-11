@@ -604,7 +604,11 @@ footer {
 }
 
 .head_algorithms p{
-    width:500px;
+    color: #706956;
+    font-size: 16px;
+    font-style: italic;
+    opacity: 0.9;
+    width: 360px;
 }
 
 .tweet_me_left {

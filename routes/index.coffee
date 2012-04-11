@@ -52,19 +52,19 @@ exports.algorithms = (req, res) ->
     log(req)
     page =
         'title': 'Algorithms',
-        'description': 'The algorithms were developed in JavaScript and Canvas, by Leonardo Zizzamia.'
+        'description': 'The algorithms are developed in Javascript, Canvas and a bit of CoffeeScript.'
     res.render 'algorithms/index.html', page
     
 exports.kruskal = (req, res) ->
     log(req)
     page =
         'title': 'Algorithms | Kruskal',
-        'description': 'Javascript and canvas Kruskal'
+        'description': 'Animation of Kruskal\'s algorithm based on Javascript, Canvas and a bit of CoffeeScript.'
     res.render 'algorithms/kruskal.html', page
     
 exports.dijkstra = (req, res) ->
     log(req)
     page =
         'title': 'Algorithms | Dijkstra',
-        'description': 'Javascript and canvas Dijkstra'
+        'description': 'Animation of Dijkstra\'s Algorithm based on Javascript, Canvas and a bit of CoffeeScrip.'
     res.render 'algorithms/dijkstra.html', page

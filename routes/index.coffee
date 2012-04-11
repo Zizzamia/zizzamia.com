@@ -1,6 +1,10 @@
 twitter = require '../lib/twitter'
 dateformat = require '../lib/dateformat'
 
+parse_url = (tweet) ->
+    return tweet.replace /[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, (url) ->
+        return "<a href=\"#{url}\" target=\"_blank\">#{url}</a>"
+
 # Instantiates new Twitter object
 twit = new twitter({
 	consumer_key: 'zo5xn9MiS4hjEPl1saXFQ',
@@ -8,7 +12,6 @@ twit = new twitter({
 	access_token_key: '25728571-pkadhqZbTeNqh5W6TKmCnTguPzOseyeX5seWskcWS',
 	access_token_secret: 'nzv835V5iaQOwY4tg4ZeiCeRohJ7EzR7bfVNufc'
 })
-
 
 profile_image =
     screen_name: 'zizzamia',
@@ -43,6 +46,8 @@ exports.index = (req, res) ->
 exports.timeline = (req, res) ->
     log(req)
     twit.get '/statuses/user_timeline.json', user_timeline, (data) ->
+        for x in data
+            x.text = parse_url(x.text)
         page = 
             'tweets': data,
             'layout': false

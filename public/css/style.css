@@ -603,11 +603,27 @@ footer {
     text-align:center;
 }
 
+.head_algorithms h1 {
+    font-size: 34px;
+    letter-spacing: 0.02em;
+    line-height: 40px;
+    margin-left: 200px;
+    text-align: left;
+    word-spacing: 0.2em;
+}
+
+.head_algorithms img {
+    float: left;
+    margin-left: 20px;
+}
+
 .head_algorithms p{
     color: #706956;
-    font-size: 16px;
+    font-size: 18px;
     font-style: italic;
+    margin-left: 200px;
     opacity: 0.9;
+    text-align: left;
     width: 360px;
 }
 

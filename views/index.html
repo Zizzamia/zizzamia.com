@@ -72,7 +72,7 @@
                 </div>
             </section>
         </header>
-        <div id="twitter">
+        <div class="twitter">
         </div>
     </div>
 </section>
@@ -81,11 +81,49 @@
 {% block js_code %}
 <script>
 t.get(document).ready(function(){
+    
+    var tweet, last_left_post, last_right_post, 
+        left_position, right_position, media,
+        float_div, text;
+    
     t.ajax({
         url : '/timeline',
         loader : '<img src="/img/loader.gif" alt="" />',
-        successHTML : 'twitter'
+        success : function(timeline){
+            var timeline_json = t.json.decode(timeline);
+            for (var i = 0; i < timeline_json.length; i++) {
+                tweet = timeline_json[i];
+                print_tweet(tweet.text, tweet.media);
+            }
+        }
     });
+    
+    function print_tweet(text,media){
+        last_left_post = t.get('.twitter .left').pop();
+        last_right_post = t.get('.twitter .right').pop();
+        left_position = 0;
+        right_position = 0;
+        
+        if (last_left_post) {
+            left_position = last_left_post.clientHeight + last_left_post.offsetTop;
+        } 
+        if (last_right_post){
+            right_position = last_right_post.clientHeight + last_right_post.offsetTop;
+        }
+        
+        if(left_position <= right_position){
+            float_div = 'left';
+        }else{
+            float_div = 'right';
+        }
+        
+        tweet = '<div class="'+float_div+' picture_tweet">';
+        if (media){
+            tweet += '<img src="'+media+'" alt="" title="" />';
+        }
+        tweet += '<p>'+text+'</p></div>';
+        t.get('.twitter').append(tweet);
+    }
 })
 </script>
 {% endblock %}

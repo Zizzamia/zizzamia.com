@@ -25,7 +25,7 @@ user_timeline =
     include_entities:true, 
     include_rts:true,
     screen_name:'zizzamia', 
-    count:20
+    count:40
     
 log = (req) ->
     now = new Date()
@@ -48,10 +48,11 @@ exports.timeline = (req, res) ->
     twit.get '/statuses/user_timeline.json', user_timeline, (data) ->
         for x in data
             x.text = parse_url(x.text)
-        page = 
-            'tweets': data,
-            'layout': false
-        res.render 'timeline.html', page
+            x.media = undefined
+            if x['entities']['media'] != undefined
+                if x['entities']['media'][0]['media_url'] != undefined
+                    x.media = x['entities']['media'][0]['media_url']
+        res.json(data)
         
 exports.algorithms = (req, res) ->
     log(req)

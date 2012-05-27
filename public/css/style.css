@@ -586,6 +586,30 @@ nav li a:hover img {
     filter: alpha(opacity=100);
 }
 
+div.picture_tweet {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    float: left;
+    margin: 0 0 18px 0;
+    padding: 6px;
+    width: 46%;
+}
+div.picture_tweet img {
+    width: 100%;
+}
+div.picture_tweet p {
+    font-size: 15px;
+    line-height: 20px;
+    margin: 4px 0 2px;
+}
+
+.left {
+    float:left!important;
+}
+.right {
+    float:right!important;
+}
+
 /* Footer ================================================================================== */
 footer {
     border-top: 1px solid rgba(78, 68, 60, 0.1);

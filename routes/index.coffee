@@ -1,13 +1,9 @@
-twitter = require '../lib/twitter'
-twitter_data = require '../lib/twitter_data'
 dateformat = require '../lib/dateformat'
+twit = require '../lib/twitter_data'
 
 parse_url = (tweet) ->
     return tweet.replace /[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, (url) ->
         return "<a href=\"#{url}\" target=\"_blank\">#{url}</a>"
-
-# Instantiates new Twitter object
-twit = new twitter(twitter_data)
 
 profile_image =
     screen_name: 'zizzamia',

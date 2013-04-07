@@ -7,10 +7,10 @@ parse_url = (tweet) ->
 
 # Instantiates new Twitter object
 twit = new twitter({
-	consumer_key: 'zo5xn9MiS4hjEPl1saXFQ',
-	consumer_secret: 'JcnsuCOI9jbrhJB1oeLn4xKUyoVsuGeFZ68nAyGyRHs',
-	access_token_key: '25728571-pkadhqZbTeNqh5W6TKmCnTguPzOseyeX5seWskcWS',
-	access_token_secret: 'nzv835V5iaQOwY4tg4ZeiCeRohJ7EzR7bfVNufc'
+	consumer_key: '',
+	consumer_secret: '',
+	access_token_key: '',
+	access_token_secret: ''
 })
 
 profile_image =

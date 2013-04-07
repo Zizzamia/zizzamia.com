@@ -4,5 +4,8 @@
 # Fabfile
 fabfile.py
 
+# Twitter data
+lib/twitter_data.js
+
 # OSX sucks
 .DS_Store

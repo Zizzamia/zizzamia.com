@@ -1,4 +1,5 @@
 twitter = require '../lib/twitter'
+twitter_data = require '../lib/twitter_data'
 dateformat = require '../lib/dateformat'
 
 parse_url = (tweet) ->
@@ -6,12 +7,7 @@ parse_url = (tweet) ->
         return "<a href=\"#{url}\" target=\"_blank\">#{url}</a>"
 
 # Instantiates new Twitter object
-twit = new twitter({
-	consumer_key: '',
-	consumer_secret: '',
-	access_token_key: '',
-	access_token_secret: ''
-})
+twit = new twitter(twitter_data)
 
 profile_image =
     screen_name: 'zizzamia',

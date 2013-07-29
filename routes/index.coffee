@@ -9,9 +9,14 @@ profile_image =
     screen_name: 'zizzamia',
     size: 'bigger',
     image: ''
-    
-twit.userProfileImage 'zizzamia', profile_image, (data) ->
-    profile_image['image'] = data.substring(0,data.length - 10) + 'reasonably_small.jpg'
+
+twit.get 'users/show', { screen_name: 'zizzamia' }, (err, data) ->
+    try
+        console.log(data.profile_image_url.substring(0,data.profile_image_url.length - 12) + '.jpeg')
+        profile_image['image'] = data.profile_image_url.substring(0,data.profile_image_url.length - 12) + '.jpeg'
+    catch
+        console.log("Error: get twitter profile")
+        profile_image['image'] = ""
     
 user_timeline =
     include_entities:true, 
@@ -24,6 +29,7 @@ log = (req) ->
     utc = dateformat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
     head = req.headers
     route = req.route
+    console.log route
     text = route.path + ' - ' + route.method + ' - ' + head.host + ' - ' + head['user-agent'].split(' ')[0] + ' - ' + utc
     console.log(text)
 
@@ -37,7 +43,7 @@ exports.index = (req, res) ->
 
 exports.timeline = (req, res) ->
     log(req)
-    twit.get '/statuses/user_timeline.json', user_timeline, (data) ->
+    twit.get 'statuses/user_timeline', user_timeline, (err, data) ->
         for x in data
             x.text = parse_url(x.text)
             x.media = undefined

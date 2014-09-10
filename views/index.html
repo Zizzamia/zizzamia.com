@@ -1,78 +1,86 @@
 {% extends "layout.html" %}
 {% block container %}
 <section class="row">
-    <nav class="left span3">
-        <div>
-            <h2>Projects</h2>
-            <ul>
-                <li>
-                    <a href="http://opentaste.eu/" title="A social network to create and world-sharing your recipes">
-                        Opentaste.eu
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.flightpooling.com/" title="Flightpooling | to fly to share to travel.">
-                        Flightpooling
-                    </a>
-                </li>
-                <li>
-                    <a href="http://opentaste.github.io/tiramisu/" title="A tasty JavaScript µLibrary">
-                        <img src="/img/tiramisu.png" alt="A tasty JavaScript µLibrary" />
-                        Tiramisu.js
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/Opentaste/bombolone" title="A tasty Content Management System 
-                    for Python based on Flask, MongoDB, Tiramisu">
-                        <img src="/img/bombolone.png" alt="" />
-                        Bombolone
-                    </a>
-                </li>
-                <li>
-                    <a href="/algorithms/" title="The algorithms are developed in Javascript, Canvas and a bit of CoffeeScript">
-                        <img src="/img/algorithms_40.png" alt="" />
-                        Algorithms.js
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/Zizzamia/zizzamia.com" title="My personal website in Node.js and CoffeeScript.">
-                        <img src="/img/zizzamia_logo_23.png" alt="">
-                        Zizzamia.com
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <h2>Contacts</h2>
-            <ul>
-                <li><a href="https://github.com/Zizzamia" title="">Github</a></li>
-                <li><a href="https://twitter.com/#!/zizzamia" title="">Twitter</a></li>
-                <li><a href="http://www.linkedin.com/pub/leonardo-zizzamia/22/8a9/97" title="">Linkedin</a></li>
-                <li><a href="https://www.facebook.com/lzizzamia" title="">Facebook</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="right span8">
-        <header>
-            <section class="row">
-                <div class="left span2">
-                    <img src="{{ profile_image }}" alt="">
-                </div>
-                <div class="right span6">
-                    <h1>Leonardo Zizzamia</h1>
-                    <p>
-                        Software Tools Engineer at 
-                        <a href="https://twitter.com/Zizzamia" title="">Twitter</a>, San Francisco CA.</p>
-                    <p>
-                        Creator of 
-                        <a href="http://opentaste.eu/" title="A social network to create and world-sharing your recipes">Opentaste.eu</a>
-                    </p>
-                </div>
-            </section>
-        </header>
-        <div class="twitter" style="position:relative;">
-        </div>
+  <nav class="left span3">
+    <div>
+      <h2>Projects</h2>
+      <ul>
+        <li>
+          <a href="http://opentaste.eu/" 
+          title="A social network to create and world-sharing your recipes">
+            Opentaste.eu
+          </a>
+        </li>
+        <li>
+          <a href="http://zizzamia.com/ng-tasty/" 
+          title="A lightweight, flexible, and tasty collection of reusable UI
+           components for AngularJS, like grandma used to make.">
+            #ngTasty
+          </a>
+        </li>
+        <li>
+          <a href="http://www.flightpooling.com/" title="Flightpooling | to fly to share to travel.">
+            Flightpooling
+          </a>
+        </li>
+        <li>
+          <a href="http://opentaste.github.io/tiramisu/" title="A tasty JavaScript µLibrary">
+            <img src="/img/tiramisu.png" alt="A tasty JavaScript µLibrary" />
+            Tiramisu.js
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/Opentaste/bombolone" title="A tasty Content Management System 
+          for Python based on Flask, MongoDB, Tiramisu">
+            <img src="/img/bombolone.png" alt="" />
+            Bombolone
+          </a>
+        </li>
+        <li>
+          <a href="/algorithms/" title="The algorithms are developed in Javascript, Canvas and a bit of CoffeeScript">
+            <img src="/img/algorithms_40.png" alt="" />
+            Algorithms.js
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/Zizzamia/zizzamia.com" title="My personal website in Node.js and CoffeeScript.">
+            <img src="/img/zizzamia_logo_23.png" alt="">
+            Zizzamia.com
+          </a>
+        </li>
+      </ul>
     </div>
+    <div>
+      <h2>Contacts</h2>
+      <ul>
+        <li><a href="https://github.com/Zizzamia" title="">Github</a></li>
+        <li><a href="https://twitter.com/#!/zizzamia" title="">Twitter</a></li>
+        <li><a href="http://www.linkedin.com/pub/leonardo-zizzamia/22/8a9/97" title="">Linkedin</a></li>
+        <li><a href="https://www.facebook.com/lzizzamia" title="">Facebook</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="right span8">
+    <header>
+      <section class="row">
+        <div class="left span2">
+          <img src="{{ profile_image }}" alt="">
+        </div>
+        <div class="right span6">
+          <h1>Leonardo Zizzamia</h1>
+          <p>
+            Software Engineer at 
+            <a href="https://twitter.com/Zizzamia" title="">Twitter</a>, San Francisco CA.</p>
+          <p>
+            Creator of 
+            <a href="http://opentaste.eu/" title="A social network to create and world-sharing your recipes">Opentaste.eu</a>
+          </p>
+        </div>
+      </section>
+    </header>
+    <div class="twitter" style="position:relative;">
+    </div>
+  </div>
 </section>
 {% endblock %}
 

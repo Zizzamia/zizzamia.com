@@ -12,8 +12,8 @@ profile_image =
 
 twit.get 'users/show', { screen_name: 'zizzamia' }, (err, data) ->
     try
-        console.log data.profile_image_url.substring(0,data.profile_image_url.length - 12) + '.jpeg'
-        profile_image['image'] = data.profile_image_url.substring(0,data.profile_image_url.length - 12) + '.jpeg'
+        console.log data.profile_image_url.substring(0,data.profile_image_url.length - 11) + '.jpg'
+        profile_image['image'] = data.profile_image_url.substring(0,data.profile_image_url.length - 11) + '.jpg'
     catch error
         console.log "Error: get twitter profile" 
         profile_image['image'] = ""

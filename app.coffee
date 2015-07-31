@@ -24,5 +24,5 @@ app.get('/algorithms', routes.algorithms)
 app.get('/algorithms/kruskal', routes.kruskal)
 app.get('/algorithms/dijkstra', routes.dijkstra)
 
-app.listen(19421)
+app.listen(14516)
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

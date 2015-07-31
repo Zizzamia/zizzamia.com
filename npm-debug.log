@@ -1,27 +1,30 @@
-info it worked if it ends with ok
-verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
-info using npm@1.1.4
-info using node@v0.6.12
-verbose config file /Users/leo/.npmrc
-verbose config file /usr/local/etc/npmrc
-verbose config file /usr/local/lib/node_modules/npm/npmrc
-ERR! Couldn't read dependencies.
-ERR! Failed to parse json
-ERR! Unexpected string
-ERR! File: /Users/leo/Desktop/zizzamia/zizzamia.com/package.json
-ERR! JSON.parse Failed to parse package.json data.
-ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
-ERR! JSON.parse This is not a bug in npm.
-ERR! JSON.parse Tell the package author to fix their package.json file.
-ERR! 
-ERR! System Darwin 11.3.0
-ERR! command "node" "/usr/local/bin/npm" "install"
-ERR! cwd /Users/leo/Desktop/zizzamia/zizzamia.com
-ERR! node -v v0.6.12
-ERR! npm -v 1.1.4
-ERR! file /Users/leo/Desktop/zizzamia/zizzamia.com/package.json
-ERR! code EJSONPARSE
-ERR! message Failed to parse json
-ERR! message Unexpected string
-ERR! errno {}
-verbose exit [ 1, true ]
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/zizzamia/.nvm/v0.10.36/bin/node',
+1 verbose cli   '/Users/zizzamia/.nvm/v0.10.36/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'coffee' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.36
+4 error Error: EPERM, Operation not permitted
+4 error     at /Users/zizzamia/.nvm/v0.10.36/lib/node_modules/npm/node_modules/uid-number/uid-number.js:44:16
+4 error     at ChildProcess.exithandler (child_process.js:656:7)
+4 error     at ChildProcess.emit (events.js:98:17)
+4 error     at maybeClose (child_process.js:766:16)
+4 error     at Socket.<anonymous> (child_process.js:979:11)
+4 error     at Socket.emit (events.js:95:17)
+4 error     at Pipe.close (net.js:466:12)
+5 error If you need help, you may report this *entire* log,
+5 error including the npm and node versions, at:
+5 error     <http://github.com/npm/npm/issues>
+6 error System Darwin 14.3.0
+7 error command "/Users/zizzamia/.nvm/v0.10.36/bin/node" "/Users/zizzamia/.nvm/v0.10.36/bin/npm" "install" "-g" "coffee"
+8 error cwd /Users/zizzamia/Desktop/code/zizzamia/zizzamia.com
+9 error node -v v0.10.36
+10 error npm -v 1.4.28
+11 error code [ 'EPERM',
+11 error code   'EPERM',
+11 error code   index: 0,
+11 error code   input: 'EPERM, Operation not permitted' ]
+12 error errno 1
+13 verbose exit [ 1, true ]

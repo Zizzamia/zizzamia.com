@@ -6,7 +6,7 @@
       "cookies": "*",
       "express": "2.5.8",
       "jinjs":  "latest",
-      "pwilang": "latest"
+      "pwilang": "latest",
       "keygrip": "*",
       "oauth": "*"
   }

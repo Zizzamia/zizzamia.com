@@ -1,6 +1,8 @@
 # Compiled files
 *.pyc
 
+node_modules
+
 # Fabfile
 fabfile.py
 
